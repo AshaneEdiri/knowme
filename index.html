@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Talk to machine</title>
+	<title>Know about me</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -18,35 +18,46 @@
 	                    <div class="card no-border">
 	                        <div id="chat" class="conv-form-wrapper">
 	                            <form action="" method="GET" class="hidden">
-									<input type="text" name="hi" data-conv-question="Hi" >
-									<input type="text" name="sup" data-conv-question="Whats up? | How are you? | Are you alright ?">
-	                                <input type="text" name="name" data-conv-question="Alright! What is your name ?.|Okay! Please, tell me your name first.">
-	                                <input type="text" data-conv-question="It's a pleasure to meet you {name}. :0 ! " data-no-answer="true">
+									<input type="text" name="hi" data-conv-question="Hi I am Ashane" >
+									<input type="text" name="sup" data-conv-question="Whats up? | How are you? | How you doing?">
+	                                <input type="text" name="name" data-conv-question="Alright! What is your name ?.|Okay! Please, tell me your name first. | Hey, you didn't tell me your name">
+	                                <input type="text" data-conv-question="It's a pleasure to meet you {name}. | Nice meeting you {name}" data-no-answer="true">
 	                                <input type="text" name="from" data-conv-question="So where are you from?" >
-									<input type="text" data-conv-question="{from} is a nice country :D , isn't it?.| What time is it at {from} ?" >	                        
-									<input type="text" data-conv-question="aha | cool" data-no-answer="true">
-									<input type="text" name="why" data-callback="storeState" data-conv-question="So why are you here?" >	                            
+									<input type="text" data-conv-question="{from} is a nice country :D , isn't it?.| What time is it there at {from} ?" >	                        
+									<input type="text" data-conv-question="aha | cool | awsome" data-no-answer="true">
+									<select name="why" data-callback="storeState" data-conv-question="So what do you want to know about me?">
+										<option value="country" >Country</option>
+	                                    <option value="education" >Education</option>
+	                                    <option value="profession" >Profession</option>
+	                                </select>									
 									  <div data-conv-fork="why">
-	                                    <div data-conv-case="yes">
-	                                        <input type="text" data-conv-question="A fellow programmer! Cool." data-no-answer="true">
+										<div data-conv-case="country">
+	                                        <input type="text" data-callback="restore" data-conv-question="I am a Sri Lankan" data-no-answer="true">
 	                                    </div>
-	                                    <div data-conv-case="no">
-		                                    <select name="thought" data-conv-question="Have you ever thought about learning? Programming is fun!">
-		                                    	<option value="yes">Yes</option>
-		                                    	<option value="no">No..</option>
+	                                    <div data-conv-case="education">
+	                                        <input type="text" data-callback="restore" data-conv-question="I have completed my bachelors and did my specialized in software engineering" data-no-answer="true">
+	                                    </div>
+	                                    <div data-conv-case="profession">
+		                                    <select name="callbackTest" data-conv-question="Do you want to know more about my professional details">
+		                                    	<option value="linkedIn" data-callback="linkedin">Yeah</option>
+												<option value="" data-callback="restore">No</option>
+												<!--option value="" data-callback="rollback">Want to know something else?</option-->
+												<!--option value="no" data-callback="restore">No</-->
 		                                    </select>
+											<select name="callbackTest1" data-conv-question="Do you wanna check my code repository?">
+													<option value="gitlab" data-callback="gitlab">Yes</option>
+													<option value="no" data-callback="restore">No</option>
+										    </select>
 	                                    </div>
 	                                </div>	              
-									<select data-conv-question="You can find me from ">
-											<option value="google" data-callback="google">Google</option>
-											<option value="bing" data-callback="bing">Bing</option>
+									<select data-conv-question="You can contact me via | Feel free to connect with me">
+											<option value="email" data-callback="email">Email</option>
+											<option value="twitter" data-callback="twitter">Twitter</option>
+											<option value="insta" data-callback="insta">Instagram</option>
+											<option value="" data-callback="restore">Skip</option>
 									</select>
-	                                <select name="callbackTest" data-conv-question="You can do some cool things with callback functions. Want to rollback to the 'programmer' question before?">
-	                                    <option value="yes" data-callback="rollback">Yes</option>
-	                                    <option value="no" data-callback="restore">No</option>
-	                                </select>
-	                                <select data-conv-question="This is it! If you like me, consider donating! If you need support, contact me. When the form gets to the end, the plugin submits it normally, like you had filled it." id="">
-	                                    <option value="">Awesome!</option>
+	                                <select data-conv-question="This is it! If you like to connect with me, contact me. See you later {name}" id="">
+	                                    <option value="" onclick="self.close()">See you!</option>
 	                                </select>
 	                            </form>
 	                        </div>
@@ -61,12 +72,25 @@
 	<script type="text/javascript" src="dist/jquery.convform.js"></script>
 
 	<script>
-		function google(stateWrapper, ready) {
-			window.open("https://google.com");
+	
+		function gitlab(stateWrapper, ready) {
+			window.open("https://gitlab.com/Ueidias/");
 			ready();
 		}
-		function bing(stateWrapper, ready) {
-			window.open("https://bing.com");
+		function insta(stateWrapper, ready) {
+			window.open("https://www.instagram.com/ashane.edirisinghe/");
+			ready();
+		}
+		function linkedin(stateWrapper, ready) {
+			window.open("https://www.linkedin.com/in/ashane-edirisinghe");
+			ready();
+		}
+		function email(stateWrapper, ready) {
+			window.open("mailto:ashane.ediri08@gmail.com");
+			ready();
+		}
+		function twitter(stateWrapper, ready) {
+			window.open("https://twitter.com/Ashane_Ediri_");
 			ready();
 		}
 		var rollbackTo = false;
@@ -87,7 +111,10 @@
 				stateWrapper.current.next = rollbackTo;
 				console.log('changed current.next to rollbackTo');
 			}
+			rollbackTo = stateWrapper.current;
+			originalState = false;
 			ready();
+
 		}
 		function restore(stateWrapper, ready) {
 			if(originalState != false) {
